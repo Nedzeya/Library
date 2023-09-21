@@ -9,10 +9,11 @@ public class Book {
     @Size(min = 1, max = 100, message = "Name of the book should be between 1 and 100 characters")
     private String nameOfBook;
 
-    @Size(min = 1, max = 50, message = "Name of the author should be between 1 and 50 characters")
+    @Size(min = 0, max = 50, message = "The author's name must not exceed 50 characters")
     private String author;
 
-    @Size(min = 4, max = 4, message = "Year should be in format: 1234")
+    @Min(value = 1000, message = "The year must be in the format: 1234")
+    @Max(value = 9999, message = "The year must be in the format: 1234")
     private int year;
 
     public Book() {

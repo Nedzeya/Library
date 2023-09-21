@@ -1,7 +1,6 @@
 package com.klachkova.library.dao;
 
 import com.klachkova.library.modeles.Book;
-import com.klachkova.library.modeles.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
