@@ -25,13 +25,13 @@ public class PersonDAO {
         return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
     }
 
- /*   public Optional<Person> show(String email) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE email=?", new Object[]{email},
+    public Optional<Person> show(String name, int year) {
+        return jdbcTemplate.query("SELECT * FROM Person WHERE name=? and year=?", new Object[]{name, year},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
-    }*/
+    }
 
-    public Person show(int id) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id},
+    public Person show(int person_id) {
+        return jdbcTemplate.query("SELECT * FROM Person WHERE person_id=?", new Object[]{person_id},
                         new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
     }
@@ -41,13 +41,13 @@ public class PersonDAO {
                 person.getName(), person.getYear());
     }
 
-    public void update(int id, Person updatedPerson) {
-        jdbcTemplate.update("UPDATE Person SET name=?, year=? WHERE id = ?",
-                updatedPerson.getName(), updatedPerson.getYear(), id);
+    public void update(int person_id, Person updatedPerson) {
+        jdbcTemplate.update("UPDATE Person SET name=?, year=? WHERE person_id = ?",
+                updatedPerson.getName(), updatedPerson.getYear(), person_id);
     }
 
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
+    public void delete(int person_id) {
+        jdbcTemplate.update("DELETE FROM Person WHERE person_id=?", person_id);
     }
 
 }

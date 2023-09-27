@@ -13,7 +13,7 @@ public class PersonMapper implements RowMapper<Person> {
     public Person mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Person person = new Person();
 
-        person.setId(resultSet.getInt("id"));
+        person.setPerson_id(resultSet.getInt("id"));
         person.setName(resultSet.getString("name"));
         person.setYear(resultSet.getInt("year"));
         return person;

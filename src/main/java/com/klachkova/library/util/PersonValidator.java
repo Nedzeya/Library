@@ -22,18 +22,14 @@ public class PersonValidator implements Validator {
         return Person.class.equals(clazz);
     }
 
-    @Override
-    public void validate(Object target, Errors errors) {
 
-    }
-
-    // возможно понадобится для книги
-    /*@Override
+@Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
 
-        if (personDAO.show(person.getEmail()).isPresent()){
-            errors.rejectValue("email", "","This email is already taken");
+        if (personDAO.show(person.getName(), person.getYear()).isPresent())
+    {
+            errors.rejectValue("name,year", "","This person is already exist");
         }
-    }*/
+    }
 }

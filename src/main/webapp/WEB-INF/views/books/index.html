@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Index books</title>
@@ -7,9 +7,9 @@
 <body>
 
 
-<div th:each="book : ${books}">
+<div th:each="book: ${books}">
     <a th:href="@{/books/{id}(id=${book.getId()})}"
-       th:text="${book.getNameOfBook()+ ', '+ book.getAuthor() + ', ' + book.getYear()} "> user </a>
+       th:text="${book.getNameOfBook()+ ', '+ book.getAuthor() + ', ' + book.getYear()} "> book </a>
 </div>
 
 <br>

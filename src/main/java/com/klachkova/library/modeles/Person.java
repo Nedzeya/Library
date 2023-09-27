@@ -1,11 +1,9 @@
 package com.klachkova.library.modeles;
 
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.validation.constraints.*;
 
 public class Person {
-    private int id;
+    private int person_id;
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 1, max = 50, message = "Name should be between 1 and 50 characters")
@@ -18,20 +16,20 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id, String name, int year) {
-        this.id = id;
+    public Person(int person_id, String name, int year) {
+        this.person_id = person_id;
         this.name = name;
         this.year = year;
 
     }
 
 
-    public int getId() {
-        return id;
+    public int getPerson_id() {
+        return person_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPerson_id(int person_id) {
+        this.person_id = person_id;
     }
 
     public String getName() {

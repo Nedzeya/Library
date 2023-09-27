@@ -13,7 +13,36 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="3d40bf7f-634f-45d5-8fb6-145c6b0735b2">
-      <console name="project1" type="STANDARD" schema="public" session="Main" />
+      <console name="project1" type="STANDARD" schema="public" session="Main"><![CDATA[drop table book;
+drop table person;
+
+create table person (
+person_id serial primary key ,
+"name" varchar (50) not null unique,
+year int check  ("year">=1923 or "year"<=2017) not null 
+);
+
+create table Book (
+id serial primary key ,
+person_id int references person (person_id) on delete set null ,
+nameOfBook varchar (100) not null,
+author varchar (50) not null default 'Unknown',
+year int check ("year">=1000 or "year"<=9999)
+);
+
+
+
+
+
+insert into book (person_id,nameofbook,author,"year") values (2,'book4','autor',2000);
+insert into book (nameofbook,author,"year") values ('book5','autor',2000);
+insert into person (person_id,"name","year") values (2,'name',2000);
+select *from book;
+delete from person where person_id =1;
+delete from book where id =1;
+select * from person;
+SELECT * FROM book WHERE id = 1;
+select * from person where "name"=name and year=2000;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -21,6 +50,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="3d40bf7f-634f-45d5-8fb6-145c6b0735b2" dataset="public.person" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
