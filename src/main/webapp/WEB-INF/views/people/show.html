@@ -7,8 +7,31 @@
 <body>
 
 <p th:text="${person.getName()+', '+ person.getYear()}">VALUE</p>
-<p th:text="${person.getPerson_id()}">VALUE</p>
 
+
+<a th:if="${books.size} == 0 "> The person hasn't picked up any books yet </a>
+
+<a th:unless="${books.size} == 0 ">
+<table>
+    <hr/>
+    <p th:text ="${'Books:'}"> text </p>
+
+    <tr th:each="book: ${books}" >
+
+        <td th:text="${book.nameOfBook + ', '}">Name of book</td>
+        <td th:text="${book.author + ', '}"> Author</td>
+        <td th:text="${book.year + '; '}">Year of book</td>
+        <td>
+
+           <a th:href="@{/books/{id}(id=${book.getId()})}"> review the book </a>
+
+
+         </td>
+
+
+    </tr>
+</table>
+</a>
 
 <hr/>
 

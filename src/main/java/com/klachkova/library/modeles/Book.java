@@ -26,17 +26,9 @@ public class Book {
         this.nameOfBook = nameOfBook;
         this.author = author;
         this.year = year;
-       // this.person_id = null;
     }
 
 
-//    public Book(int id, int person_id, String nameOfBook, String author, int year) {
-//        this.id = id;
-//        this.person_id = person_id;
-//        this.nameOfBook = nameOfBook;
-//        this.author = author;
-//        this.year = year;
-//    }
 
     public int getId() {
         return id;
@@ -70,11 +62,5 @@ public class Book {
         this.year = year;
     }
 
-//    public int getPerson_id() {
-//        return person_id;
-//    }
-//
-//    public void setPerson_id(int person_id) {
-//        this.person_id = person_id;
-//    }
+
 }
