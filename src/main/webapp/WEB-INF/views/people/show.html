@@ -14,7 +14,7 @@
 <a th:unless="${books.size} == 0 ">
 <table>
     <hr/>
-    <p th:text ="${'Books:'}"> text </p>
+    <p style="font-weight:bold" th:text ="${'Books:'}"> text </p>
 
     <tr th:each="book: ${books}" >
 

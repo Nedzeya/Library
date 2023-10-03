@@ -4,9 +4,6 @@ import javax.validation.constraints.*;
 
 public class Book {
     private int id;
-
-   // private Integer person_id;
-
     @NotEmpty(message = "Name of the book should not be empty")
     @Size(min = 1, max = 100, message = "Name of the book should be between 1 and 100 characters")
     private String nameOfBook;
@@ -27,8 +24,6 @@ public class Book {
         this.author = author;
         this.year = year;
     }
-
-
 
     public int getId() {
         return id;

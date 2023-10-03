@@ -1,8 +1,8 @@
 package com.klachkova.library.controllers;
 
 import com.klachkova.library.dao.BookDAO;
+import com.klachkova.library.dao.PersonDAO;
 import com.klachkova.library.modeles.Book;
-import com.klachkova.library.modeles.Person;
 import com.klachkova.library.util.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,13 @@ public class BookController {
     private final BookDAO bookDAO;
     private final BookValidator bookValidator;
 
+    private final PersonDAO personDAO;
+
     @Autowired
-    public BookController(BookDAO bookDAO, BookValidator bookValidator) {
+    public BookController(BookDAO bookDAO, BookValidator bookValidator, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
         this.bookValidator = bookValidator;
+        this.personDAO = personDAO;
     }
 
     @GetMapping()
@@ -32,9 +35,10 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id,
-                       Model model) {
+                       Model bookModel, Model personModel ) {
 
-        model.addAttribute("book", bookDAO.show(id));
+        bookModel.addAttribute("book", bookDAO.show(id));
+        personModel.addAttribute("person",personDAO.show (bookDAO.getPerson_id(id)));
         return "books/show";
     }
 

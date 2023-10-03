@@ -33,6 +33,11 @@ public class BookDAO {
                 .stream().findAny().orElse(null);
     }
 
+    public Integer getPerson_id (int id) {
+        return jdbcTemplate.queryForObject("SELECT book.person_id FROM Book WHERE id = ?", new Object[]{id},
+                Integer.class);
+    }
+
     public void save(Book book) {
         jdbcTemplate.update("INSERT INTO Book ( nameOfBook, author, year) VALUES (?,?,?)",
                 book.getNameOfBook(), book.getAuthor(), book.getYear());

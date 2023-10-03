@@ -39,10 +39,12 @@ insert into book (nameofbook,author,"year") values ('book5','autor',2000);
 insert into person (person_id,"name","year") values (2,'name',2000);
 select *from book;
 delete from person where person_id =1;
-delete from book where id =1;
+select * from book where id =2 and book.person_id >0 ;
 select * from person;
-SELECT * FROM book WHERE book.person_id = 2;
-select * from person where "name"=name and year=2000;]]></console>
+SELECT * FROM book WHERE book.person_id != null;
+select * from person where "name"=name and year=2000;
+SELECT book.person_id FROM Book WHERE id = 4;
+SELECT * FROM Person WHERE person_id= null;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
