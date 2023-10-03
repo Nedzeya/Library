@@ -48,6 +48,10 @@ public class BookDAO {
                 updatedBook.getNameOfBook(), updatedBook.getAuthor(), updatedBook.getYear(), id);
     }
 
+    public void free (int id){
+        jdbcTemplate.update("UPDATE Book SET person_id = null WHERE id =?", id);
+    }
+
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM Book WHERE id=?", id);
     }

@@ -7,16 +7,25 @@
 <body>
 
 <p th:text="${book.getNameOfBook()+', '+book.getAuthor()+', '+book.getYear()}">VALUE</p>
-<a th:if="${person} != null "> This book is not free. </a>
+
+
+<a th:if="${person} != null ">
+   <p th:text= "'This book is now in the possession of: ' + ${person.getName()}" >VALUE</p>
+
+    <a th:href="@{/books/{id}/free (id=${book.getId()}) }"> <input type="submit" value="Free the book"/> </a>
+
+</a>
+
 <a th:unless="${person} != null "> This book is free. </a>
 
-
+<br>
+<br>
 <a th:href="@{/books/{id}/edit (id=${book.getId()}) }"> Edit</a>
+
 
 <form th:method="DELETE" th:action="@{/books/{id} (id = ${book.getId()}) }">
     <br>
-    <br>
-    <input type="submit" value="Delete"/>
+      <input type="submit" value="Delete"/>
 </form>
 </body>
 </html>

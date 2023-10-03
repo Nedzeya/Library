@@ -82,6 +82,11 @@ public class BookController {
         return "redirect:/books";
 
     }
+   @GetMapping ("/{id}/free")
+   public String free ( @PathVariable("id") int id) {
+       bookDAO.free (id);
+       return "redirect:/books/{id}";
+    }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
