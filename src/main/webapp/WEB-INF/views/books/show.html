@@ -21,7 +21,14 @@
     <br>
     Select the person to whom you want to assign the book:
 
+    <select>
+        <option th:each="person: ${people}" th:value="${person.getPerson_id()}" th:text="${person.getName()}"></option>
+    </select>
+
 </a>
+
+
+
 
 <br>
 <br>

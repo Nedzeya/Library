@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/books")
@@ -20,11 +21,14 @@ public class BookController {
 
     private final PersonDAO personDAO;
 
+
+
     @Autowired
     public BookController(BookDAO bookDAO, BookValidator bookValidator, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
         this.bookValidator = bookValidator;
         this.personDAO = personDAO;
+
     }
 
     @GetMapping()
@@ -35,10 +39,12 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id,
-                       Model bookModel, Model personModel ) {
+                       Model bookModel, Model personModel, Model peopleModel ) {
 
         bookModel.addAttribute("book", bookDAO.show(id));
         personModel.addAttribute("person",personDAO.show (bookDAO.getPerson_id(id)));
+        peopleModel.addAttribute("people",personDAO.index());
+
         return "books/show";
     }
 
