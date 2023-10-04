@@ -94,6 +94,12 @@ public class BookController {
        return "redirect:/books/{id}";
     }
 
+    @GetMapping("/{id}/assign")
+    public String assign (@PathVariable("id") int id){
+        bookDAO.assign (id);
+        return "redirect:/books/{id}";
+    }
+
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         bookDAO.delete(id);

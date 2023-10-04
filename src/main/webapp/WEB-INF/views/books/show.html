@@ -12,7 +12,8 @@
 <a th:if="${person} != null ">
    <p th:text= "'This book is now in the possession of: ' + ${person.getName()}" >VALUE</p>
 
-    <a th:href="@{/books/{id}/free (id=${book.getId()}) }"> <input type="submit" value="Free the book"/> </a>
+    <a th:href="@{/books/{id}/free (id=${book.getId()}) }">
+        <input type="submit" style="color:green" value="Free the book"/> </a>
 
 </a>
 
@@ -23,17 +24,15 @@
 
     <select>
         <option th:each="person: ${people}" th:value="${person.getPerson_id()}" th:text="${person.getName()}"></option>
+        <a th:href="@{/books/{id}/assign (id=${book.getId()}) }"> <br> <input type="submit" style="color: green" value="Assign"/> </a>
     </select>
 
+
+
 </a>
+ <br>
 
-
-
-
-<br>
-<br>
-<a th:href="@{/books/{id}/edit (id=${book.getId()}) }"> Edit</a>
-
+<a th:href="@{/books/{id}/edit (id=${book.getId()}) }"> <br> <input type="submit" style="color:orange" value="Edit"/> </a>
 
 <form th:method="DELETE" th:action="@{/books/{id} (id = ${book.getId()}) }">
     <br>
