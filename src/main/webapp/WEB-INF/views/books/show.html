@@ -16,7 +16,12 @@
 
 </a>
 
-<a th:unless="${person} != null "> This book is free. </a>
+<a th:unless="${person} != null ">
+    This book is free.
+    <br>
+    Select the person to whom you want to assign the book:
+
+</a>
 
 <br>
 <br>
@@ -29,6 +34,11 @@
 </form>
 <br>
 <br>
-<a th:href="@{/books }"> <-- Back to book list </a>
+<a th:href="@{/books }"> >< Back to book list </a>
+<br>
+<br>
+<a th:href="@{/people }"> o-<  Back to people list </a>
+
+
 </body>
 </html>
