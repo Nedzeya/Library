@@ -20,13 +20,17 @@
 <a th:unless="${person} != null ">
     This book is free.
     <br>
-    Select the person to whom you want to assign the book:
 
-    <select>
-        <option th:each="person: ${people}" th:value="${person.getPerson_id()}" th:text="${person.getName()}"></option>
-        <a th:href="@{/books/{id}/assign (id=${book.getId()}) }"> <br> <input type="submit" style="color: green" value="Assign"/> </a>
+    <form  th:method="POST" th:action="@{/books/{id} (id=${book.getId()}) }">
+<label>Select the person to whom you want to assign this book: </label>
+    <select name= "person_id" >
+
+        <option
+                th:each="person: ${people}" th:value="${person.getPerson_id()}"
+                th:text="${person.getName()}"></option>
     </select>
-
+        <button type="submit" >Assign </button>
+    </form>
 
 
 </a>

@@ -94,9 +94,11 @@ public class BookController {
        return "redirect:/books/{id}";
     }
 
-    @GetMapping("/{id}/assign")
-    public String assign (@PathVariable("id") int id){
-        bookDAO.assign (id);
+    @PostMapping("/{id}")
+    public String assign (@RequestParam("person_id") int selectedPerson_id,
+                          @PathVariable("id") int id){
+
+        bookDAO.assign (selectedPerson_id,id);
         return "redirect:/books/{id}";
     }
 
