@@ -3,7 +3,6 @@ package com.klachkova.library.controllers;
 import com.klachkova.library.dao.BookDAO;
 import com.klachkova.library.dao.PersonDAO;
 import com.klachkova.library.modeles.Book;
-import com.klachkova.library.util.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,22 +10,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/books")
-public class BookController {
+public class BooksController {
     private final BookDAO bookDAO;
-    private final BookValidator bookValidator;
-
-    private final PersonDAO personDAO;
+     private final PersonDAO personDAO;
 
 
 
     @Autowired
-    public BookController(BookDAO bookDAO, BookValidator bookValidator, PersonDAO personDAO) {
+    public BooksController(BookDAO bookDAO, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
-        this.bookValidator = bookValidator;
         this.personDAO = personDAO;
 
     }
@@ -39,11 +34,11 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id,
-                       Model bookModel, Model personModel, Model peopleModel ) {
+                       Model model ) {
 
-        bookModel.addAttribute("book", bookDAO.show(id));
-        personModel.addAttribute("person",personDAO.show (bookDAO.getPerson_id(id)));
-        peopleModel.addAttribute("people",personDAO.index());
+        model.addAttribute("book", bookDAO.show(id));
+        model.addAttribute("person",personDAO.show (bookDAO.getPerson_id(id)));
+        model.addAttribute("people",personDAO.index());
 
         return "books/show";
     }
@@ -57,8 +52,6 @@ public class BookController {
     @PostMapping
     public String create(@ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult) {
-
-        bookValidator.validate(book, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "books/new";
@@ -78,8 +71,6 @@ public class BookController {
     public String update(@ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult,
                          @PathVariable("id") int id) {
-
-        bookValidator.validate(book, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "books/edit";

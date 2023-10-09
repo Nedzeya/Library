@@ -22,13 +22,10 @@ public class PeopleController {
     private final PersonDAO personDAO;
     private final PersonValidator personValidator;
 
-    private final BookDAO bookDAO;
-
     @Autowired
     public PeopleController(PersonDAO personDAO, PersonValidator personValidator, BookDAO bookDAO) {
         this.personDAO = personDAO;
         this.personValidator = personValidator;
-        this.bookDAO = bookDAO;
     }
 
     @GetMapping()
@@ -38,10 +35,10 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String show (@PathVariable("id") int id, Model personModel, Model bookModel) {
+    public String show (@PathVariable("id") int id, Model model) {
 
-        personModel.addAttribute("person", personDAO.show(id));
-        bookModel.addAttribute("books", bookDAO.taken(id));
+        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("books", personDAO.takenBooks(id));
 
         return "people/show";
     }

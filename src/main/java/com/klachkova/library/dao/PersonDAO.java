@@ -1,14 +1,12 @@
 package com.klachkova.library.dao;
 
+import com.klachkova.library.modeles.Book;
 import com.klachkova.library.modeles.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +24,8 @@ public class PersonDAO {
     }
 
     public Optional<Person> show(String name, int year) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE name=? and year=?", new Object[]{name, year},
+        return jdbcTemplate.query("SELECT * FROM Person WHERE name=? and year=?",
+                new Object[]{name, year},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
 
@@ -51,4 +50,10 @@ public class PersonDAO {
         jdbcTemplate.update("DELETE FROM Person WHERE person_id=?", person_id);
     }
 
+
+    public List <Book> takenBooks(int person_id){
+        return jdbcTemplate.query("SELECT * FROM book WHERE person_id = ?",
+                new Object[]{person_id},
+                new BeanPropertyRowMapper<>(Book.class));
+    }
 }
