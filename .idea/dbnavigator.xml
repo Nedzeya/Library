@@ -45,7 +45,8 @@ SELECT * FROM book WHERE book.person_id != null;
 select * from person where "name"=name and year=2000;
 SELECT book.person_id FROM Book WHERE id = 4;
 SELECT * FROM Person WHERE person_id= null;
-UPDATE Book SET person_id = null WHERE id =6;]]></console>
+UPDATE Book SET person_id = 2 WHERE id =6;
+UPDATE Book SET person_id = 3 WHERE id =1;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
