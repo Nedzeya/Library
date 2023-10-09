@@ -25,13 +25,15 @@ public class PersonDAO {
 
     public Optional<Person> show(String name, int year) {
         return jdbcTemplate.query("SELECT * FROM Person WHERE name=? and year=?",
-                new Object[]{name, year},
-                new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
+                        new Object[]{name, year},
+                        new BeanPropertyRowMapper<>(Person.class))
+                .stream().findAny();
     }
 
     public Person show(Integer person_id) {
-        
-        return jdbcTemplate.query("SELECT * FROM Person WHERE person_id=?", new Object[]{person_id},
+
+        return jdbcTemplate.query("SELECT * FROM Person WHERE person_id=?",
+                        new Object[]{person_id},
                         new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
     }
@@ -51,7 +53,7 @@ public class PersonDAO {
     }
 
 
-    public List <Book> takenBooks(int person_id){
+    public List<Book> takenBooks(int person_id) {
         return jdbcTemplate.query("SELECT * FROM book WHERE person_id = ?",
                 new Object[]{person_id},
                 new BeanPropertyRowMapper<>(Book.class));
